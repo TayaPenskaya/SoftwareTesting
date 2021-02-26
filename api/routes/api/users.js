@@ -21,8 +21,8 @@ router.put('/user', auth.required, function(req, res, next){
             user.username = req.body.username;
         }
         if(typeof req.body.user.password !== 'undefined'){
-            user.password = req.body.password;
         }
+            user.password = req.body.password;
         if(typeof req.body.user.cash !== 'undefined'){
             user.cash = req.body.cash;
         }
@@ -53,7 +53,7 @@ router.post('/users/login', function(req, res, next){
     })(req, res, next);
 });
 
-router.post('/users', function(req, res, next){
+router.post('/users/register', function(req, res, next){
     let user = new User();
 
     user.username = req.body.username;

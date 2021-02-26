@@ -1,10 +1,15 @@
 # Express + Node.js + MongoDB
 
-## Как пользоваться:
+## Methods API
 
-* создать юзера: ```curl -H "Content-Type: application/json" -d '{"username":"asd", "password":"asd"}' http://localhost:8080/api/users```
-* создать стол: ```curl -H "Content-Type: application/json" -d '{"seats":10, "rake":5}' http://localhost:8080/api/tables```
-* c mongo:
+* register user: ```curl -H "Content-Type: application/json" -d '{"username":"name", "password":"pass"}' http://localhost:port/api/users/register```
+* login: ```curl -H "Content-Type: application/json" -H "Authorization: Bearer ${TOKEN}" -d '{"username":"name", "password":"pass"}' http://localhost:port/api/users/login```
+* create new table:  ```curl -H "Content-Type: application/json" -H 'Authorization: Bearer ${TOKEN}' -d '{"seats":10, "rake":5}' http://localhost:port/api/tables```
+* get all tables: ```curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H 'Authorization: Bearer ${TOKEN}' -X GET http://localhost:port/api/tables```
+* play on table: ```curl -H "Content-Type: application/json" -H 'Authorization: Bearer ${TOKEN}' -d '{"table":{"id":"table_id"}}' http://localhost:port/api/tables/table_id/play ```
+* unsubscribe from table: ```curl -X DELETE -H "Content-Type: application/json" -H 'Authorization: Bearer ${TOKEN}' -d '{"table":{"id":"table_id"}}' http://localhost:port/api/tables/table_id/play```
+
+* mongo:
 ```
 > mongo
 > show databases
@@ -14,7 +19,6 @@
 > db.users.find()
 > db.tables.find()
 ```
-* залогиниться ```curl -H "Content-Type: application/json" -d '{"username":"asd", "password":"asd"}' http://localhost:1234/api/users/login```
 
 ## Полезные ссылки
 

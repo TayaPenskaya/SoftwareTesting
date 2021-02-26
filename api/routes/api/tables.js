@@ -39,7 +39,7 @@ router.get('/', auth.required, function(req, res, next) {
     });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.required, function(req, res, next) {
     let table = new Table();
 
     table.seats = req.body.seats;
@@ -53,13 +53,15 @@ router.post('/', function(req, res, next) {
 
 // Play a game on table
 router.post('/:table/play', auth.required, function(req, res, next) {
-    let tableId = req.table._id;
+    let tableId = req.body.table.id;
 
     User.findById(req.payload.id).then(function(user){
         if (!user) { return res.sendStatus(401); }
 
         return user.play(tableId).then(function(){
-            return req.article.updateFreeSeats().then(function(table){
+            Table.findById(tableId).then(function(table){
+                table.updateFreeSeats();
+                console.log(user.games);
                 return res.json({table: table.toJSONFor(user)});
             });
         });
@@ -68,13 +70,14 @@ router.post('/:table/play', auth.required, function(req, res, next) {
 
 // Unplay a game on table
 router.delete('/:table/play', auth.required, function(req, res, next) {
-    let tableId = req.table._id;
+    let tableId = req.body.table.id;
 
     User.findById(req.payload.id).then(function (user){
         if (!user) { return res.sendStatus(401); }
 
         return user.unplay(tableId).then(function(){
-            return req.article.updateFreeSeats().then(function(table){
+            Table.findById(tableId).then(function(table){
+                table.updateFreeSeats();
                 return res.json({table: table.toJSONFor(user)});
             });
         });
