@@ -43,7 +43,3 @@
 ### Main
 
 - [ ] Добавить GitHub action для запуска тестов на UI и Backend по пушу из в master ветку.
-
-# Reporting. BDD.
-
-- [ ] Использовать Allure reporting для написанных тестов.
