@@ -30,10 +30,10 @@ router.get('/', auth.required, function(req, res, next) {
             let tablesCount = results[1];
 
             return res.json({
-                articles: tables.map(function(article){
+                tables: tables.map(function(tables){
                     return tables.toJSONFor(user);
                 }),
-                articlesCount: tablesCount
+                tablesCount: tablesCount
             });
         }).catch(next);
     });
