@@ -44,14 +44,6 @@
 
 - [ ] Добавить GitHub action для запуска тестов на UI и Backend по пушу из в master ветку.
 
-### Advanced
-
-- [ ] Добавить GitHub action для деплоя приложения UI+BE на Azure/Vercel/Яндекс Облако.
-
-### Bonus
-
-- [ ] Использовать Kubernetes в Azure/Яндекс Облаке для разворачивания среды.
-
 # Reporting. BDD.
 
 - [ ] Использовать Allure reporting для написанных тестов.
