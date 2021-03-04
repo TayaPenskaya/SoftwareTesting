@@ -14,7 +14,7 @@ router.use(function(err, req, res, next){
         });
     }
     if(err.name === 'UnauthorizedError'){
-        return res.status(422).send('You forgot to login');
+        return res.status(401).send('You forgot to login');
     }
 
     return next(err);
