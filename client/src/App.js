@@ -1,35 +1,30 @@
-import React, {useEffect} from 'react';
-import MissionList from "./mission/MissionList";
+import './App.css';
+import React from 'react';
+import {BrowserRouter, Route} from "react-router-dom";
+import 'antd/dist/antd.css';
+import axios from 'axios';
+import Tables from './components/Tables';
+import Register from "./components/Register";
+import Login from "./components/Login";
 
-function App() {
-  const [missions, setMissions] = React.useState([]);
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {data: ''};
+    }
 
-  useEffect(() => {
-      fetch('https://raw.githubusercontent.com/denissokolov/tc-internship-task/master/launches.json')
-      .then(response => response.json())
-          .then(missions => {
-              setMissions(missions)
-          })
-  }, []);
-
-    return (
-      <div className='wrapper'>
-          <span className='flex'>
-              <h2>Current time:</h2>
-              <h2 id='now'>
-                { setInterval(() => {
-                  let now = new Date();
-                  document.getElementById("now").innerHTML = now.toLocaleString();}, 0)
-                }
-              </h2>
-          </span>
-          <span className='flex'>
-              <h1 className='header'>Space</h1>
-              <h1 className='header'>X Missions</h1>
-          </span>
-        <MissionList missions={missions}/>
-      </div>
-  )
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="App">
+                    <Route exact path='/' component={Login}/>
+                    <Route path="/users/register" component={Register}/>
+                    <Route path="/users/login" component={Login}/>
+                    <Route path="/tables" component={Tables}/>
+                </div>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;
