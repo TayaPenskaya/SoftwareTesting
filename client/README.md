@@ -2,8 +2,8 @@
 
 ## Commands
 
-- npm start
-- npm run dev
+- ```npm start```
+- ```npm run dev```
 
 ## Preprocessing
 
@@ -11,7 +11,7 @@
 
 ## Routes
 
-- at the start you go to login page
+- ```.*/``` -- at the start you go to login page
 - ```.*/users/register``` -- registartion page
 - ```.*/users/login``` -- login page
 - ```.*/tables``` -- page with tables
