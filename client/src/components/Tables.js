@@ -23,19 +23,35 @@ class Tables extends Component {
     }
 
     onPlay = (idx) => {
-        this.state.tables[idx].isPlaying.flag = true;
         var token = localStorage.getItem('jwtToken');
         var id = this.state.tables[idx].id;
-        axios.post('/tables/' + id + '/play', {"table": {"id": id}}, { headers: {"Authorization" : `Bearer ${token}`}}).then();
-        this.render();
+        axios.post('/tables/' + id + '/play', {"table": {"id": id}},
+            { headers: {"Authorization" : `Bearer ${token}`}})
+            .then(res => {
+                console.log(res.data.table);
+                const table = res.data.table;
+                const flag = table.isPlaying;
+                table.isPlaying = {flag: flag, idx: idx};
+                this.state.tables[idx] = table;
+                this.setState(this.state.tables);
+                this.render();
+            });
     };
 
     onUnplay = (idx) => {
-        this.state.tables[idx].isPlaying.flag = false;
         var token = localStorage.getItem('jwtToken');
         var id = this.state.tables[idx].id;
-        axios.delete('/tables/' + id + '/play',{ headers: {"Authorization" : `Bearer ${token}`}, data: {"table": {"id": id}}}).then();
-        this.render();
+        axios.delete('/tables/' + id + '/play',
+            { headers: {"Authorization" : `Bearer ${token}`}, data: {"table": {"id": id}}})
+            .then(res => {
+                console.log(res.data.table);
+                const table = res.data.table;
+                const flag = table.isPlaying;
+                table.isPlaying = {flag: flag, idx: idx};
+                this.state.tables[idx] = table;
+                this.setState(this.state.tables);
+                this.forceUpdate();
+            });
     };
 
     componentDidMount() {
@@ -57,13 +73,13 @@ class Tables extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
-            <div>
-                <Table
-                    columns={this.columns}
-                    dataSource={this.state.tables}
-                />
-            </div>
+            <Table
+                columns={this.columns}
+                // dataSource={this.state.tables}
+                dataSource={[]}
+            />
         )
     }
 

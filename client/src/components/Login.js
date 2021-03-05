@@ -3,7 +3,6 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './index.css';
 import axios from 'axios';
 import { Component } from 'react';
-import Error from "./Error";
 
 class Login extends Component {
     constructor(props) {
@@ -15,6 +14,7 @@ class Login extends Component {
         e.preventDefault();
 
         const { username, password } = this.state;
+
         axios.post('/users/login', { username, password })
             .then((res) => {
                 localStorage.setItem('jwtToken', res.data.user.token);
@@ -39,13 +39,13 @@ class Login extends Component {
                 <h2> Login form </h2>
                 <Form name="login" className="login-form" initialValues={{remember: true}} onSubmit={this.onSubmit}>
                     <Form.Item name="username" rules={[ { required: true, message: 'Please input your Username!'},]}>
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" value={this.state.username} onChange={(e) => this.setState({...this.state, username: e.target.value})}/>
+                        <Input id="login-id" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" value={this.state.username} onChange={(e) => this.setState({...this.state, username: e.target.value})}/>
                     </Form.Item>
                     <Form.Item name="password" rules={[ { required: true, message: 'Please input your Password!',},]}>
-                        <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.setState({...this.state, password: e.target.value})}/>
+                        <Input id="password-id" prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.setState({...this.state, password: e.target.value})}/>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="submit" htmlType="submit" className="login-form-button" onClick={this.onSubmit}>
+                        <Button id="submit-id" type="submit" htmlType="submit" className="login-form-button" onClick={this.onSubmit}>
                             Log in
                         </Button>
                         Or <a href="/users/register">register now!</a>

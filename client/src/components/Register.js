@@ -4,6 +4,11 @@ import './index.css';
 import axios from "axios";
 import {Component} from "react";
 
+export const isValid = (pass) => {
+    var re = /^(?=.*\d)(?=.*[a-z]).{4,}$/;
+    return re.test(pass);
+};
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -15,10 +20,16 @@ class Register extends Component {
 
         const { username, password } = this.state;
 
-        axios.post('/users/register', { username, password })
-            .then((result) => {
-                this.props.history.push("/users/login")
-            });
+        if (this.isValid(password)) {
+            axios.post('/users/register', { username, password })
+                .then((result) => {
+                    this.props.history.push("/users/login")
+                });
+        } else {
+            const message = 'Unvalid password';
+            this.setState({ message:  message});
+            this.props.history.push({pathname: '/error', state: { detail: message }})
+        }
     };
 
     render() {

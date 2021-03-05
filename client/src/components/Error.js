@@ -7,7 +7,7 @@ class Error extends Component {
         let message = this.props.location.state.detail;
         console.log(message);
         return (
-            <h2 dangerouslySetInnerHTML={{__html: message}}/>
+            <h2>{ message}</h2>
         );
     }
 }
