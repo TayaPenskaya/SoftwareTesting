@@ -1,5 +1,7 @@
 # SoftwareTesting
 
+[![Build Status](https://github.com/TayaPenskaya/SoftwareTesting/workflows/node.js/badge.svg)]
+
 ## Идея
 
 Приложение для игры в покер.
