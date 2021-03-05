@@ -33,8 +33,14 @@
 
 - [ ] Разобраться как с помощью ```Cypress и Playwright``` делать авторизацию в вашем приложении, чтобы каждый тест не проходил форму логина(авторизации). 
 
-# CI/CD. GitHub actions. Azure.
+# CI. GitHub actions. 
 
 ### Main
 
 - [ ] Добавить GitHub action для запуска тестов на UI и Backend по пушу из в master ветку.
+
+# Selenide.
+
+### Main 
+
+- [ ] Написать ```e2e``` тесты, используя Selenide
