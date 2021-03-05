@@ -20,7 +20,7 @@ class Register extends Component {
 
         const { username, password } = this.state;
 
-        if (this.isValid(password)) {
+        if (isValid(password)) {
             axios.post('/users/register', { username, password })
                 .then((result) => {
                     this.props.history.push("/users/login")
@@ -39,13 +39,13 @@ class Register extends Component {
                 <h2> Registation form </h2>
                 <Form name="register" className="login-form" initialValues={{remember: true}} onSubmit={this.onSubmit}>
                     <Form.Item name="username" rules={[ { required: true, message: 'Please input your Username!'},]}>
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" value={username} onChange={(e) => this.setState({...this.state, username: e.target.value})}/>
+                        <Input id="username-id" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" value={username} onChange={(e) => this.setState({...this.state, username: e.target.value})}/>
                     </Form.Item>
                     <Form.Item name="password" rules={[ { required: true, message: 'Please input your Password!',},]}>
-                        <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" value={password} onChange={(e) => this.setState({...this.state, password: e.target.value})}/>
+                        <Input id="password-id" prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" value={password} onChange={(e) => this.setState({...this.state, password: e.target.value})}/>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="submit" htmlType="submit" className="login-form-button" onClick={this.onSubmit}>
+                        <Button id="submit-id" type="submit" htmlType="submit" className="login-form-button" onClick={this.onSubmit}>
                             Register
                         </Button>
                     </Form.Item>
