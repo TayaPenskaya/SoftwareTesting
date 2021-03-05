@@ -15,9 +15,9 @@ class Tables extends Component {
                         {title: 'Rake', dataIndex: 'rake'},
                         {title: 'isPlaying', dataIndex: 'isPlaying', render: (value) => {
                             if (value.flag) {
-                                return <a href="#" onClick={() => this.onUnplay(value.idx)}>Unplay</a>
+                                return <a href="./tables" onClick={() => this.onUnplay(value.idx)}>Unplay</a>
                             } else {
-                                return <a href="#" onClick={() => this.onPlay(value.idx)}>Play</a>
+                                return <a href="./tables" onClick={() => this.onPlay(value.idx)}>Play</a>
                             }
                         }}]
     }
@@ -34,7 +34,6 @@ class Tables extends Component {
                 table.isPlaying = {flag: flag, idx: idx};
                 this.state.tables[idx] = table;
                 this.setState(this.state.tables);
-                this.render();
             });
     };
 
@@ -50,7 +49,6 @@ class Tables extends Component {
                 table.isPlaying = {flag: flag, idx: idx};
                 this.state.tables[idx] = table;
                 this.setState(this.state.tables);
-                this.forceUpdate();
             });
     };
 

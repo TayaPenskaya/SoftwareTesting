@@ -48,7 +48,7 @@ class Login extends Component {
                         <Button id="submit-id" type="submit" htmlType="submit" className="login-form-button" onClick={this.onSubmit}>
                             Log in
                         </Button>
-                        Or <a href="/users/register">register now!</a>
+                        Or <a href="/users/register" id="register-id">register now!</a>
                     </Form.Item>
                 </Form>
             </div>
