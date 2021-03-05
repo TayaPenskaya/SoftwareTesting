@@ -3,6 +3,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './index.css';
 import axios from 'axios';
 import { Component } from 'react';
+import Error from "./Error";
 
 class Login extends Component {
     constructor(props) {
@@ -14,20 +15,20 @@ class Login extends Component {
         e.preventDefault();
 
         const { username, password } = this.state;
-        debugger
         axios.post('/users/login', { username, password })
             .then((res) => {
                 localStorage.setItem('jwtToken', res.data.user.token);
                 this.setState({ message: '' });
-                debugger
                 this.props.history.push('/tables')
             })
             .catch((error) => {
                 if(error.response.status === 422) {
                     this.setState({ message: 'Login failed. Username or password not match!' });
+                    this.props.history.push({pathname: '/error', state: { detail: this.state.message }})
                 }
                 if(error.response.status === 401) {
                     this.setState({ message: 'No such user!' });
+                    this.props.history.push({pathname: '/error', state: { detail: this.state.message }})
                 }
             });
     };
