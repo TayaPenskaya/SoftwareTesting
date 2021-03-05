@@ -43,4 +43,30 @@ describe('Playwright tests', function () {
         await delay(100);
         expect(await page.url()).toBe('http://localhost:3000/users/register');
     });
+
+    it('good registration', async () => {
+        await page.goto('http://localhost:3000/users/register');
+        const log = 'kuuuu';
+        const pass = 'kuku1';
+        await page.fill('#username-id', log);
+        await page.fill('#password-id', pass);
+        await page.click('#submit-id');
+        await delay(100);
+        expect(await page.url()).toBe('http://localhost:3000/users/login');
+        await page.fill('#login-id', log);
+        await page.fill('#password-id', pass);
+        await page.click('#submit-id');
+        await delay(100);
+        expect(await page.url()).toBe('http://localhost:3000/tables');
+    });
+
+    it('bad registration', async () => {
+        await page.goto('http://localhost:3000/users/register');
+        await page.fill('#username-id', 'kuku');
+        await page.fill('#password-id', '1');
+        await page.click('#submit-id');
+        await delay(100);
+        expect(await page.url()).toBe('http://localhost:3000/error');
+    });
+
 });
