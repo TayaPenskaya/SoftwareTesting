@@ -77,8 +77,7 @@ class Tables extends Component {
         return (
             <Table
                 columns={this.columns}
-                // dataSource={this.state.tables}
-                dataSource={[]}
+                dataSource={this.state.tables}
             />
         )
     }
