@@ -1,6 +1,6 @@
 # SoftwareTesting
 
-![Actions Status: test](https://github.com/TayaPenskaya/SoftwareTesting/workflows/node.js.yml/badge.svg)
+![Actions Status](https://github.com/TayaPenskaya/SoftwareTesting/actions/workflows/node.js.yml/badge.svg)
 
 ## Идея
 
