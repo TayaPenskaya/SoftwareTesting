@@ -20,6 +20,7 @@ abstract class BaseTest {
             clearBrowserCookies();
             clearBrowserLocalStorage();
             refresh();
+            open("http://127.0.0.1:3001/");
         } else {
             System.err.println(url);
             open(url);
@@ -27,7 +28,7 @@ abstract class BaseTest {
     }
 
     @Test
-    public void login() {
+    public void success_login() {
         $("#login-id").setValue("taya");
         $("#password-id").setValue("taya");
         $("#submit-id").click();
@@ -41,6 +42,36 @@ abstract class BaseTest {
                 fail("Ты не смог зарегаться, лох!");
             default:
                 fail("Server loh");
+        }
+    }
+
+    @Test
+    public void fail_login() {
+        $("#login-id").setValue("taya");
+        $("#password-id").setValue("loh");
+        $("#submit-id").click();
+        sleep(2000);
+        switch (driver().url()) {
+            case "http://127.0.0.1:3001/error":
+                break;
+            case "http://127.0.0.1:3001/":
+                fail("Server tormoz");
+            default:
+                fail("Сам ты лох!");
+        }
+    }
+
+    @Test
+    public void registration_after_login() {
+        $("#register-id").click();
+        sleep(2000);
+        switch (driver().url()) {
+            case "http://127.0.0.1:3001/users/register":
+                break;
+            case "http://127.0.0.1:3001/":
+                fail("Server tormoz");
+            default:
+                fail("Промахнулся");
         }
     }
 }
