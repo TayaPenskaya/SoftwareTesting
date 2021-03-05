@@ -1,6 +1,7 @@
 # SoftwareTesting
 
 ![Actions Status](https://github.com/TayaPenskaya/SoftwareTesting/actions/workflows/node.js.yml/badge.svg)
+![Taya best](https://img.shields.io/badge/taya-best-brightgreen)
 
 ## Идея
 
