@@ -1,22 +1,12 @@
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import static com.codeborne.selenide.Condition.cssClass;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
 abstract class BaseTest {
-    private final static String CSS_CLASS_BUTTON_DISABLED = "buttonDisabled";
-
-    private final static String SELECTOR_TOP_PANEL = "#root > div > div.topPanel";
-    private final static String SELECTOR_FLOOR_SWITCHER = "#root > div > div.officeMap > div.omTopPanel > div.floorSwitcher";
-    private final static String SELECTOR_FLOOR_TITLE = "#root > div > div.officeMap > div.omTopPanel > div.floorTitle";
-
     private final String url;
 
     protected BaseTest(String url) {
