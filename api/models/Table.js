@@ -23,7 +23,7 @@ tableSchema.methods.toJSONFor = function(user){
         seats: this.seats,
         free: this.free,
         rake: this.rake,
-        isPlaying: user ? user.isPlaying(this._id) : false
+        isPlaying: user.isPlaying(this._id)
     };
 };
 
